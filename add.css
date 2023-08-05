@@ -54,63 +54,6 @@
             display: none;
         }
 
-        /***********************************************Tablet***********************************************/
-        @media screen and (min-width: 481px) and (max-width: 768px){
-
-            label.logo{
-                font-size:30px ;
-                padding-left: 50px;
-            }
-
-            nav ul li a {
-                font-size: 16px ;
-            }
-
-        }
-
-        /***********************************************Mobile***********************************************/
-        @media screen and (max-width: 480px){
-
-            .checkbtn{
-                display: block;
-            }
-            nav ul{
-                position: fixed;
-                width: 100%;
-                height: 300px;
-                background:#f7c9e6;
-                top: 80px;
-                left: -100%;
-                text-align: center;
-                transition:all .5s ;
-                z-index: 3;
-            }
-            nav ul li{
-                display: block;
-                margin:50px 0;
-                line-height: 20px;
-            }
-            nav ul li a{
-                font-size: 20px;
-            }
-            a:hover,a.active{
-                background: none;
-                color: white;
-            }
-            #check:checked ~ ul{
-                left: 0;
-            }
-            .checkbtn{
-                display: block;
-            }
-            #check{
-                display: none;
-            }
-            label.logo{
-                padding-left: 30px;
-                padding-right: 150px;
-            }
-        }
         /*////////////////////////////////////////// SLIDER //////////////////////////////////////////*/
         
         img {
@@ -122,6 +65,18 @@
             max-width: 100%;
             position: relative;
             margin: auto;
+        }
+        .slider-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: #f04888;
+        }
+        .slider-content h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
         }
         .prev, .next {
             cursor: pointer;
@@ -182,18 +137,7 @@
             from {opacity: .4} 
             to {opacity: 1}
         }
-        /***********************************************Tablet***********************************************/
-        @media screen and (min-width: 481px) and (max-width: 768px){
-            img{
-                height: 100px;
-            }
-        }
-        /***********************************************Mobile***********************************************/
-        @media screen and (max-width: 480px){
-            img{
-                height: 200px;
-            }
-        }
+        
         /*////////////////////////////////////////// BODY //////////////////////////////////////////*/
         
         .container {
@@ -284,24 +228,10 @@
         .detail .btn{
             margin-top: 10px;
         }
-        /***********************************************Tablet***********************************************/
-        @media screen and (min-width: 481px) and (max-width: 768px){
-            .itemDetails table {
-                width: 70%;
-            }
-            .container {
-                width: 50%;
-            }
-            
-        }
-        /***********************************************Mobile***********************************************/
-        @media screen and (max-width: 480px){
-            .itemDetails table {
-                width: 70%;
-            }
-            .container {
-                width: 80%;
-            }
+        .msg{
+            font-weight: bold;
+            padding-top: 5px;
+            padding-bottom: 5px;
         }
         /*////////////////////////////////////////// FOOTER //////////////////////////////////////////*/
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
@@ -336,16 +266,6 @@
             font-weight: 500;
             position: relative;
         }
-        .footer-col h4::before{
-            content: '';
-            position: absolute;
-            left:0;
-            bottom: -10px;
-            background-color: #ff7da8;
-            height: 2px;
-            box-sizing: border-box;
-            width: 50px;
-        }
         .footer-col ul li:not(:last-child){
             margin-bottom: 10px;
         }
@@ -363,6 +283,10 @@
             color: #ffffff;
             padding-left: 8px;
         }
+        .social-links{
+            display: grid;
+            grid-template-columns: auto auto auto;
+        }
         .footer-col .social-links a{
             display: inline-block;
             height: 40px;
@@ -376,21 +300,110 @@
             transition: all 0.5s ease;
         }
         .footer-col .social-links a:hover{
-            color: #f04888;
+            color:  #f04888;
             background-color: #ffffff;
         }
+
+        /*------------/////////////////---------------Responsive---------------/////////////////------------*/
 
         /***********************************************Tablet***********************************************/
         @media screen and (min-width: 481px) and (max-width: 768px){
 
+            /*NAVBAR*/
+            label.logo{
+                font-size:30px ;
+                padding-left: 50px;
+            }
+
+            nav ul li a {
+                font-size: 16px ;
+            }
+
+            /*SLIDER*/
+            img{
+                height: 400px;
+            }
+
+            /*BODY*/
+            .itemDetails table {
+                width: 70%;
+            }
+            .container {
+                width: 50%;
+            }
+
+            /*FOOTER*/
             .footer-col{
                 width: 50%;
                 margin-bottom: 30px;
             }
+
         }
 
         /***********************************************Mobile***********************************************/
         @media screen and (max-width: 480px){
+            
+            /*NAVBAR*/
+            .checkbtn{
+                display: block;
+            }
+            nav ul{
+                position: fixed;
+                width: 100%;
+                height: 300px;
+                background:#f7c9e6;
+                top: 80px;
+                left: -100%;
+                text-align: center;
+                transition:all .5s ;
+                z-index: 3;
+            }
+            nav ul li{
+                display: block;
+                margin:50px 0;
+                line-height: 20px;
+            }
+            nav ul li a{
+                font-size: 20px;
+            }
+            a:hover,a.active{
+                background: none;
+                color: white;
+            }
+            #check:checked ~ ul{
+                left: 0;
+            }
+            .checkbtn{
+                display: block;
+            }
+            #check{
+                display: none;
+            }
+            label.logo{
+                padding-left: 30px;
+                padding-right: 150px;
+            }
+
+            /*SLIDER*/
+            img{
+                height: 250px;
+            }
+            .slider-content h2 {
+                font-size: 20px;
+            }
+            .slider-content .btn {
+                font-size: 12px;
+            }
+
+            /*BODY*/
+            .itemDetails table {
+                width: 70%;
+            }
+            .container {
+                width: 80%;
+            }
+
+            /*FOOTER*/
             .footer-col{
                 width: 100%;
             }

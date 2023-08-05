@@ -14,7 +14,7 @@ if(isset($_POST['addItem'])) {
         $message = 'Please Add Item Information Before';
     } else {
         $itemCounter = $_SESSION['itemCounter'];    //Get the Counter from SESSION.
-        $_SESSION['products'][] = array(    //Save the Item information as Array in the SESSION.
+        $_SESSION['products'][] = array(    //Save the Item information as Associative Array in the SESSION.
             'itemName' => $itemName,
             'itemPrice' => $itemPrice,
             'itemDesc' => $itemDesc,
@@ -46,11 +46,6 @@ if(isset($_GET['clear']) && $_GET['clear'] === 'true') {    //When user click on
     <!-- or -->
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
     <style>
-        .msg{
-            font-weight: bold;
-            padding-top: 5px;
-            padding-bottom: 5px;
-        }
         .slider-content {
             position: absolute;
             top: 50%;
@@ -65,26 +60,7 @@ if(isset($_GET['clear']) && $_GET['clear'] === 'true') {    //When user click on
         }
         .social-links{
             display: grid;
-            grid-template-columns: auto auto auto auto auto;
-        }
-        img {
-            height: 620px;
-        }
-        @media screen and (min-width: 481px) and (max-width: 768px){
-            img{
-                height: 400px;
-            }
-        }
-        @media screen and (max-width: 480px){
-            img{
-                height: 250px;
-            }
-            .slider-content h2 {
-                font-size: 20px;
-            }
-            .slider-content .btn {
-                font-size: 12px;
-            }
+            grid-template-columns: auto auto auto;
         }
     </style>
 </head>
@@ -99,13 +75,13 @@ if(isset($_GET['clear']) && $_GET['clear'] === 'true') {    //When user click on
             </label>
         </div>
         <ul style="position: absolute; right: 5px; top: 5px">
-            <li><a class="active" href="./add_products.php">Home</a></li>
-            <li><a href="./view_products.php">All Products</a></li>
+            <li><a class="active" href="./add_item.php">Home</a></li>
+            <li><a href="./view_item.php">All Products</a></li>
         </ul>
     </nav>
     <!--//////////////////////////////////////////// END Of Nav ////////////////////////////////////////////-->
 
-	<!----------------------------------------------- Header ----------------------------------------------->
+	<!----------------------------------------------- Slider ----------------------------------------------->
     <div class="slideshow-container">
 
         <div class="mySlides fade">
@@ -138,7 +114,7 @@ if(isset($_GET['clear']) && $_GET['clear'] === 'true') {    //When user click on
         <span class="dot" onclick="currentSlide(2)"></span> 
         <span class="dot" onclick="currentSlide(3)"></span> 
     </div>
-    <!--//////////////////////////////////////////// END Of Header ////////////////////////////////////////////-->
+    <!--/////////////////////////////////////////// END Of Slider ///////////////////////////////////////////-->
     
     <!----------------------------------------------- Body ----------------------------------------------->
     <div class="container">
@@ -196,7 +172,7 @@ if(isset($_GET['clear']) && $_GET['clear'] === 'true') {    //When user click on
     </div>
 
     <div class="detail">
-        <a href="./view_products.php" class="btn">All Items</a>
+        <a href="./view_item.php" class="btn">All Items</a>
     </div>
     <!--///////////////////////////////////////// END Of Body /////////////////////////////////////////-->
     
@@ -247,27 +223,27 @@ if(isset($_GET['clear']) && $_GET['clear'] === 'true') {    //When user click on
         showSlides(slideIndex);
 
         function plusSlides(n) {
-        showSlides(slideIndex += n);
+            showSlides(slideIndex += n);
         }
 
         function currentSlide(n) {
-        showSlides(slideIndex = n);
+            showSlides(slideIndex = n);
         }
 
         function showSlides(n) {
-        let i;
-        let slides = document.getElementsByClassName("mySlides");
-        let dots = document.getElementsByClassName("dot");
-        if (n > slides.length) {slideIndex = 1}    
-        if (n < 1) {slideIndex = slides.length}
-        for (i = 0; i < slides.length; i++) {
-            slides[i].style.display = "none";  
-        }
-        for (i = 0; i < dots.length; i++) {
-            dots[i].className = dots[i].className.replace(" active", "");
-        }
-        slides[slideIndex-1].style.display = "block";  
-        dots[slideIndex-1].className += " active";
+            let i;
+            let slides = document.getElementsByClassName("mySlides");
+            let dots = document.getElementsByClassName("dot");
+            if (n > slides.length) {slideIndex = 1}    
+            if (n < 1) {slideIndex = slides.length}
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";  
+            }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            slides[slideIndex-1].style.display = "block";  
+            dots[slideIndex-1].className += " active";
         }
     </script>
 

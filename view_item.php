@@ -15,31 +15,6 @@ session_start();
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <!-- or -->
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
-    <style>
-        .card-container{
-            position: relative;
-        } 
-        .msg{
-            position: absolute;
-            left: 10px;
-            top: -20px;
-            font-weight: bold;
-            padding-top: 10px;
-            margin-bottom:20px;
-            text-align: center;
-        }
-        .social-links{
-            display: grid;
-            grid-template-columns: auto auto auto auto auto;
-        }
-        @media screen and (max-width: 480px){
-
-            .checkbtn{
-                display: block;
-            }
-        }
-        
-    </style>
 </head>
 <body>
     <!----------------------------------------------- NavBar ----------------------------------------------->
@@ -52,8 +27,8 @@ session_start();
             </label>
         </div>
         <ul style="position: absolute; right: 5px; top: 5px">
-            <li><a href="./add_products.php">Home</a></li>
-            <li><a class="active" href="./view_products.php">All Products</a></li>
+            <li><a href="./add_item.php">Home</a></li>
+            <li><a class="active" href="./view_item.php">All Products</a></li>
         </ul>
     </nav>
     <!--//////////////////////////////////////////// END Of Nav ////////////////////////////////////////////-->
