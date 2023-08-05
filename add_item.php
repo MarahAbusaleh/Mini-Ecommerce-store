@@ -1,15 +1,16 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['itemCounter'])) {
-    $_SESSION['itemCounter'] = 1;   //Counter to display the next image each time. 
-}
+// if (!isset($_SESSION['itemCounter'])) {
+//     $_SESSION['itemCounter'] = 1;   //Counter to display the next image each time. 
+// }
 
 if(isset($_POST['addItem'])) {
     $itemName = $_POST['itemName'];     //Get Item Name Entered by user.
     $itemPrice = $_POST['itemPrice'];   //Get Item Price Entered by user.
     $itemDesc = $_POST['itemDesc'];     //Get Item Description Entered by user.
     $itemDate = $_POST['itemDate'];     //Get Item Date Entered by user.
+    $itemImage = $_POST['itemImage'];     //Get Item Image Entered by user.
 
     if(empty($itemName) || empty($itemPrice) || empty($itemDesc) || empty($itemDate)) {     //When user click on 'Add button' without enter information about Item.
         $message = 'Please Add Item Information Before';
@@ -20,19 +21,22 @@ if(isset($_POST['addItem'])) {
             'itemPrice' => $itemPrice,
             'itemDesc' => $itemDesc,
             'itemDate' => $itemDate,
-            'itemImage' => "./images/item$itemCounter.jpg",
+            'itemImage' => $itemImage,
         );
         $message = 'Item Added Successfully';
         $_SESSION['itemCounter']++;     //Increment the Counter Each time.
+
+        header("Location: {$_SERVER['REQUEST_URI']}?success=1");
+        exit;
     }
 }
 
-if(isset($_GET['clear']) && $_GET['clear'] === 'true') {    //When user click on 'Delete button'
+if(isset($_GET['clear']) && $_GET['clear'] === 'true') {    //When user click on 'Delete button'.
     unset($_SESSION['products']);   //Delete the data in the SESSION.
     $_SESSION['itemCounter'] = 1;   //The Counter become 1 to start Add Items again. 
 }
 
-if (isset($_GET['deleteItem'])) {
+if (isset($_GET['deleteItem'])) {   //When user click on 'Delete icon' fpr each Item.
     $itemIndex = $_GET['deleteItem'];
     if (isset($_SESSION['products'][$itemIndex])) {
         unset($_SESSION['products'][$itemIndex]);
@@ -56,25 +60,6 @@ if (isset($_GET['deleteItem'])) {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <!-- or -->
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
-    <style>
-        .slider-content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-            color: #f04888;
-        }
-        .slider-content h2 {
-            font-size: 24px;
-            margin-bottom: 20px;
-        }
-        .social-links{
-            display: grid;
-            grid-template-columns: auto auto auto;
-        }
-
-    </style>
 </head>
 <body>
     <!----------------------------------------------- NavBar ----------------------------------------------->
@@ -144,6 +129,7 @@ if (isset($_GET['deleteItem'])) {
                 <input type="number" placeholder="Enter Item Price" name="itemPrice" class="box">
                 <input type="text"  placeholder="Enter Item Description"  name="itemDesc" class="box">
                 <input type="date"  placeholder="Enter Item Added Date"  name="itemDate" class="box"> 
+                <input type="file"  placeholder="Enter Item Image"  name="itemImage" class="box">
                 <center><input type="submit" class="btn" name="addItem" value="Add Item"></center>
 
             </form>
@@ -171,7 +157,7 @@ if (isset($_GET['deleteItem'])) {
             if(isset($_SESSION['products'])) {
                 foreach ($_SESSION['products'] as $productIndex => $product) {  //Foreach to get the Item information from the SESSION and display it in the table.
                         echo '<tr>';
-                        echo '<td><img src="' . $product['itemImage'] . '" alt="Item Image" class="itemImage"></td>';
+                        echo '<td><img src="' ."images/" . $product['itemImage']  . '" alt="Item Image" class="itemImage"></td>';
                         echo '<td>' . $product['itemName'] . '</td>';
                         echo '<td>' . $product['itemPrice'] . '</td>';
                         echo '<td>' . $product['itemDesc'] . '</td>';
