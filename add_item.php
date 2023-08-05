@@ -60,6 +60,28 @@ if (isset($_GET['deleteItem'])) {   //When user click on 'Delete icon' fpr each 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <!-- or -->
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <style>
+        input[type=file]::file-selector-button {
+            border: none;
+            background: #f04888;
+            padding: 10px 20px;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background .2s ease-in-out;
+        }
+        input[type=file]::file-selector-button:hover {
+            background: #f7c9e6;
+            transition: .5s;
+        }
+        @media screen and (max-width: 480px){
+            label.logo{
+                padding-left: 30px;
+                padding-right: 250px;
+            }
+        }
+    </style>
 </head>
 <body>
     <!----------------------------------------------- NavBar ----------------------------------------------->
@@ -128,8 +150,8 @@ if (isset($_GET['deleteItem'])) {   //When user click on 'Delete icon' fpr each 
                 <input type="text" placeholder="Enter Item Name" name="itemName" class="box">
                 <input type="number" placeholder="Enter Item Price" name="itemPrice" class="box">
                 <input type="text"  placeholder="Enter Item Description"  name="itemDesc" class="box">
-                <input type="date"  placeholder="Enter Item Added Date"  name="itemDate" class="box"> 
-                <input type="file"  placeholder="Enter Item Image"  name="itemImage" class="box">
+                <input type="date"  placeholder="Enter Item Added Date"  name="itemDate" class="box" style="color: gray"> 
+                <input type="file"  placeholder="Enter Item Image"  name="itemImage" class="box" style="color: gray">
                 <center><input type="submit" class="btn" name="addItem" value="Add Item"></center>
 
             </form>

@@ -15,6 +15,14 @@ session_start();
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <!-- or -->
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <style>
+        @media screen and (max-width: 480px){
+            label.logo{
+                padding-left: 30px;
+                padding-right: 250px;
+            }
+        }
+    </style>
 </head>
 <body>
     <!----------------------------------------------- NavBar ----------------------------------------------->
