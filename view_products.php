@@ -65,7 +65,7 @@ session_start();
             <?php
             if (isset($_SESSION['products'])) {
                 $count = 1;
-                foreach ($_SESSION['products'] as $product) {
+                foreach ($_SESSION['products'] as $product) {   //Foreach to get the Item information from the SESSION and display it in the card.
                     echo '<div class="card">';
                     echo '<img src="' . $product['itemImage']  . '" alt="Item Image"" class="card-image">';
                     echo '<div class="card-content">';
@@ -77,7 +77,7 @@ session_start();
                     $count++;
                 }
             } else {
-                echo '<p class="msg">No Items Available</p>';
+                echo '<p class="msg">No Items Available</p>';   //Display this msg when there is no Item Added yet.
             }
             ?>
         </div>

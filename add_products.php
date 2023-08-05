@@ -2,33 +2,32 @@
 session_start();
 
 if (!isset($_SESSION['itemCounter'])) {
-    $_SESSION['itemCounter'] = 1;
+    $_SESSION['itemCounter'] = 1;   //Counter to display the next image each time. 
 }
 
 if(isset($_POST['addItem'])) {
-    $itemName = $_POST['itemName'];
-    $itemPrice = $_POST['itemPrice'];
-    $itemDesc = $_POST['itemDesc'];
+    $itemName = $_POST['itemName'];     //Get Item Name Entered by user.
+    $itemPrice = $_POST['itemPrice'];   //Get Item Price Entered by user.
+    $itemDesc = $_POST['itemDesc'];     //Get Item Description Entered by user.
 
-    if(empty($itemName) || empty($itemPrice) || empty($itemDesc)) {
+    if(empty($itemName) || empty($itemPrice) || empty($itemDesc)) {     //When user click on 'Add button' without enter information about Item.
         $message = 'Please Add Item Information Before';
     } else {
-        $itemCounter = $_SESSION['itemCounter'];
-        $_SESSION['products'][] = array(
+        $itemCounter = $_SESSION['itemCounter'];    //Get the Counter from SESSION.
+        $_SESSION['products'][] = array(    //Save the Item information as Array in the SESSION.
             'itemName' => $itemName,
             'itemPrice' => $itemPrice,
             'itemDesc' => $itemDesc,
             'itemImage' => "./images/item$itemCounter.jpg",
         );
         $message = 'Item Added Successfully';
-        $_SESSION['itemCounter']++; 
+        $_SESSION['itemCounter']++;     //Increment the Counter Each time.
     }
 }
 
-
-if(isset($_GET['clear']) && $_GET['clear'] === 'true') {
-    unset($_SESSION['products']);
-    $_SESSION['itemCounter'] = 1; 
+if(isset($_GET['clear']) && $_GET['clear'] === 'true') {    //When user click on 'Delete button'
+    unset($_SESSION['products']);   //Delete the data in the SESSION.
+    $_SESSION['itemCounter'] = 1;   //The Counter become 1 to start Add Items again. 
 }
 
 ?>
@@ -111,12 +110,12 @@ if(isset($_GET['clear']) && $_GET['clear'] === 'true') {
 
         <div class="mySlides fade">
             <div class="numbertext">1 / 3</div>
-            <img src="./images/imge3.jpg">
+            <img src="./images/imge2.jpg">
         </div>
 
         <div class="mySlides fade">
             <div class="numbertext">2 / 3</div>
-            <img src="./images/imge2.jpg">
+            <img src="./images/imge3.jpg">
         </div>
 
         <div class="mySlides fade">
@@ -143,17 +142,14 @@ if(isset($_GET['clear']) && $_GET['clear'] === 'true') {
     
     <!----------------------------------------------- Body ----------------------------------------------->
     <div class="container">
-        <div class="message-block">
-            <p class="message">Display Message</p>
-        </div>
-        <div class="message-block <?php if(isset($message)) echo 'active'; ?>">
+        <div class="message-block <?php if(isset($message)) echo 'active'; ?>">     <!-- If the msg saved in SESSION -> The Item Added -> Give the msg class 'active'. -->
             <?php
-                echo '<span class="message">'.$message.'</span>';
+                echo '<span class="message">'.$message.'</span>';   // Get the msg from SESSION and display it.
             ?>
         </div>
 
         <div class="itemForm">
-            <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
+            <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">        <!-- The action is to stay in the same page when the user click on 'Add button'. -->
                 <h3>Add New Item</h3>
 
                 <input type="text" placeholder="Enter Item Name" name="itemName" class="box">
@@ -166,7 +162,7 @@ if(isset($_GET['clear']) && $_GET['clear'] === 'true') {
     </div>
 
     <div class="clear-session">
-        <a href="?clear=true" class="btn">Clear</a>
+        <a href="?clear=true" class="btn">Delete</a>
     </div>
 
     <div class="itemDetails">
@@ -182,7 +178,7 @@ if(isset($_GET['clear']) && $_GET['clear'] === 'true') {
         <tbody>
             <?php
             if(isset($_SESSION['products'])) {
-                foreach ($_SESSION['products'] as $product) {
+                foreach ($_SESSION['products'] as $product) {   //Foreach to get the Item information from the SESSION and display it in the table.
                     echo '<tr>';
                     echo '<td><img src="' . $product['itemImage']  . '" alt="Item Image" class="itemImage"></td>';
                     echo '<td>' . $product['itemName'] . '</td>';
@@ -192,7 +188,7 @@ if(isset($_GET['clear']) && $_GET['clear'] === 'true') {
                     
                 }
             } else {
-                echo '<tr><td colspan="4" class="msg">No Items Available</td></tr>';
+                echo '<tr><td colspan="4" class="msg">No Items Available</td></tr>';    //Display this msg when there is no Item Added yet.
             }
             ?>       
             </tbody>
