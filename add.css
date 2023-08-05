@@ -283,7 +283,7 @@
         }
         .detail .btn{
             margin-top: 10px;
-        }  
+        }
         /***********************************************Tablet***********************************************/
         @media screen and (min-width: 481px) and (max-width: 768px){
             .itemDetails table {

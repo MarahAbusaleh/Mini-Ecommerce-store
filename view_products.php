@@ -16,6 +16,18 @@ session_start();
     <!-- or -->
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
     <style>
+        .card-container{
+            position: relative;
+        } 
+        .msg{
+            position: absolute;
+            left: 10px;
+            top: -20px;
+            font-weight: bold;
+            padding-top: 10px;
+            margin-bottom:20px;
+            text-align: center;
+        }
         .social-links{
             display: grid;
             grid-template-columns: auto auto auto auto auto;
@@ -65,7 +77,7 @@ session_start();
                     $count++;
                 }
             } else {
-                echo '<p>No Items Available</p>';
+                echo '<p class="msg">No Items Available</p>';
             }
             ?>
         </div>

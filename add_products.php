@@ -47,6 +47,11 @@ if(isset($_GET['clear']) && $_GET['clear'] === 'true') {
     <!-- or -->
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
     <style>
+        .msg{
+            font-weight: bold;
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
         .slider-content {
             position: absolute;
             top: 50%;
@@ -187,7 +192,7 @@ if(isset($_GET['clear']) && $_GET['clear'] === 'true') {
                     
                 }
             } else {
-                echo '<tr><td colspan="3">No Items Available</td></tr>';
+                echo '<tr><td colspan="4" class="msg">No Items Available</td></tr>';
             }
             ?>       
             </tbody>
