@@ -12,7 +12,7 @@ if(isset($_POST['addItem'])) {
     $itemDate = $_POST['itemDate'];     //Get Item Date Entered by user.
     $itemImage = $_POST['itemImage'];     //Get Item Image Entered by user.
 
-    if(empty($itemName) || empty($itemPrice) || empty($itemDesc) || empty($itemDate)) {     //When user click on 'Add button' without enter information about Item.
+    if(empty($itemName) || empty($itemPrice) || empty($itemDesc) || empty($itemDate) || empty($itemImage)) {     //When user click on 'Add button' without enter information about Item.
         $message = 'Please Add Item Information Before';
     } else {
         $itemCounter = $_SESSION['itemCounter'];    //Get the Counter from SESSION.
@@ -40,7 +40,7 @@ if (isset($_GET['deleteItem'])) {   //When user click on 'Delete icon' fpr each 
     $itemIndex = $_GET['deleteItem'];
     if (isset($_SESSION['products'][$itemIndex])) {
         unset($_SESSION['products'][$itemIndex]);
-        $_SESSION['products'] = array_values($_SESSION['products']);
+        $_SESSION['products'] = array_values($_SESSION['products']);    //To re-index the elements of the $_SESSION['products'] array after removing an item from it.
         $message = 'Item Deleted Successfully';
     }
 }
