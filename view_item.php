@@ -47,6 +47,7 @@ session_start();
                     echo '<h3>' . $product['itemName'] . '</h3>';
                     echo '<p>Price: ' . $product['itemPrice'] . '</p>';
                     echo '<p>' . $product['itemDesc'] . '</p>';
+                    echo '<p>' . $product['itemDate'] . '</p>';
                     echo '</div>';
                     echo '</div>';
                     $count++;

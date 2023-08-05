@@ -9,8 +9,9 @@ if(isset($_POST['addItem'])) {
     $itemName = $_POST['itemName'];     //Get Item Name Entered by user.
     $itemPrice = $_POST['itemPrice'];   //Get Item Price Entered by user.
     $itemDesc = $_POST['itemDesc'];     //Get Item Description Entered by user.
+    $itemDate = $_POST['itemDate'];     //Get Item Date Entered by user.
 
-    if(empty($itemName) || empty($itemPrice) || empty($itemDesc)) {     //When user click on 'Add button' without enter information about Item.
+    if(empty($itemName) || empty($itemPrice) || empty($itemDesc) || empty($itemDate)) {     //When user click on 'Add button' without enter information about Item.
         $message = 'Please Add Item Information Before';
     } else {
         $itemCounter = $_SESSION['itemCounter'];    //Get the Counter from SESSION.
@@ -18,6 +19,7 @@ if(isset($_POST['addItem'])) {
             'itemName' => $itemName,
             'itemPrice' => $itemPrice,
             'itemDesc' => $itemDesc,
+            'itemDate' => $itemDate,
             'itemImage' => "./images/item$itemCounter.jpg",
         );
         $message = 'Item Added Successfully';
@@ -28,6 +30,15 @@ if(isset($_POST['addItem'])) {
 if(isset($_GET['clear']) && $_GET['clear'] === 'true') {    //When user click on 'Delete button'
     unset($_SESSION['products']);   //Delete the data in the SESSION.
     $_SESSION['itemCounter'] = 1;   //The Counter become 1 to start Add Items again. 
+}
+
+if (isset($_GET['deleteItem'])) {
+    $itemIndex = $_GET['deleteItem'];
+    if (isset($_SESSION['products'][$itemIndex])) {
+        unset($_SESSION['products'][$itemIndex]);
+        $_SESSION['products'] = array_values($_SESSION['products']);
+        $message = 'Item Deleted Successfully';
+    }
 }
 
 ?>
@@ -62,6 +73,7 @@ if(isset($_GET['clear']) && $_GET['clear'] === 'true') {    //When user click on
             display: grid;
             grid-template-columns: auto auto auto;
         }
+
     </style>
 </head>
 <body>
@@ -130,8 +142,9 @@ if(isset($_GET['clear']) && $_GET['clear'] === 'true') {    //When user click on
 
                 <input type="text" placeholder="Enter Item Name" name="itemName" class="box">
                 <input type="number" placeholder="Enter Item Price" name="itemPrice" class="box">
-                <input type="text"  placeholder="Enter Item Description"  name="itemDesc" class="box"> 
-                <input type="submit" class="btn" name="addItem" value="Add Item">
+                <input type="text"  placeholder="Enter Item Description"  name="itemDesc" class="box">
+                <input type="date"  placeholder="Enter Item Added Date"  name="itemDate" class="box"> 
+                <center><input type="submit" class="btn" name="addItem" value="Add Item"></center>
 
             </form>
         </div>
@@ -149,22 +162,25 @@ if(isset($_GET['clear']) && $_GET['clear'] === 'true') {    //When user click on
                 <th>Item Name</th>
                 <th>Item Price</th>
                 <th>Item Description</th>
+                <th>Item Date</th>
+                <th>Delete Item</th>
             </tr>
         </thead>
         <tbody>
             <?php
             if(isset($_SESSION['products'])) {
-                foreach ($_SESSION['products'] as $product) {   //Foreach to get the Item information from the SESSION and display it in the table.
-                    echo '<tr>';
-                    echo '<td><img src="' . $product['itemImage']  . '" alt="Item Image" class="itemImage"></td>';
-                    echo '<td>' . $product['itemName'] . '</td>';
-                    echo '<td>' . $product['itemPrice'] . '</td>';
-                    echo '<td>' . $product['itemDesc'] . '</td>';
-                    echo '</tr>';
-                    
-                }
+                foreach ($_SESSION['products'] as $productIndex => $product) {  //Foreach to get the Item information from the SESSION and display it in the table.
+                        echo '<tr>';
+                        echo '<td><img src="' . $product['itemImage'] . '" alt="Item Image" class="itemImage"></td>';
+                        echo '<td>' . $product['itemName'] . '</td>';
+                        echo '<td>' . $product['itemPrice'] . '</td>';
+                        echo '<td>' . $product['itemDesc'] . '</td>';
+                        echo '<td>' . $product['itemDate'] . '</td>';
+                        echo '<td><span class="material-symbols-outlined del" onclick="deleteItem(' . $productIndex . ')" name="Delete">delete</span></td>';
+                        echo '</tr>';
+                    }
             } else {
-                echo '<tr><td colspan="4" class="msg">No Items Available</td></tr>';    //Display this msg when there is no Item Added yet.
+                echo '<tr><td colspan="6" class="msg">No Items Available</td></tr>';    //Display this msg when there is no Item Added yet.
             }
             ?>       
             </tbody>
@@ -244,6 +260,12 @@ if(isset($_GET['clear']) && $_GET['clear'] === 'true') {    //When user click on
             }
             slides[slideIndex-1].style.display = "block";  
             dots[slideIndex-1].className += " active";
+        }
+
+        function deleteItem(index) {
+            if (confirm("Are you sure you want to delete this item?")) {
+                window.location.href = "?deleteItem=" + index;
+            }
         }
     </script>
 
