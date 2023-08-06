@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 
 // if (!isset($_SESSION['itemCounter'])) {
@@ -24,7 +25,7 @@ if(isset($_POST['addItem'])) {
             'itemImage' => $itemImage,
         );
         $message = 'Item Added Successfully';
-        $_SESSION['itemCounter']++;     //Increment the Counter Each time.
+        // $_SESSION['itemCounter']++;     //Increment the Counter Each time.
 
         header("Location: {$_SERVER['REQUEST_URI']}?success=1");
         exit;
@@ -33,7 +34,7 @@ if(isset($_POST['addItem'])) {
 
 if(isset($_GET['clear']) && $_GET['clear'] === 'true') {    //When user click on 'Delete button'.
     unset($_SESSION['products']);   //Delete the data in the SESSION.
-    $_SESSION['itemCounter'] = 1;   //The Counter become 1 to start Add Items again. 
+    // $_SESSION['itemCounter'] = 1;   //The Counter become 1 to start Add Items again. 
 }
 
 if (isset($_GET['deleteItem'])) {   //When user click on 'Delete icon' fpr each Item.
@@ -53,35 +54,13 @@ if (isset($_GET['deleteItem'])) {   //When user click on 'Delete icon' fpr each 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
-    <link rel="stylesheet" href="add.css">
+    <link rel="stylesheet" href="./css/add.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css%22/%3E">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <!-- or -->
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
-    <style>
-        input[type=file]::file-selector-button {
-            border: none;
-            background: #f04888;
-            padding: 10px 20px;
-            border-radius: 5px;
-            color: white;
-            cursor: pointer;
-            font-size: 18px;
-            transition: background .2s ease-in-out;
-        }
-        input[type=file]::file-selector-button:hover {
-            background: #f7c9e6;
-            transition: .5s;
-        }
-        @media screen and (max-width: 480px){
-            label.logo{
-                padding-left: 30px;
-                padding-right: 250px;
-            }
-        }
-    </style>
 </head>
 <body>
     <!----------------------------------------------- NavBar ----------------------------------------------->
@@ -234,7 +213,7 @@ if (isset($_GET['deleteItem'])) {   //When user click on 'Delete icon' fpr each 
                         <a href="#"><i class='bx bxl-twitter'></i></a>
                         <a href="#"><i class='bx bxl-facebook'></i></i></a>
                         <a href="#"><i class='bx bxl-linkedin'></i></i></a>
-                        <a href="#"><i class='bx bxl-github'></i></i></i></a>              
+                        <a href="#"><i class='bx bxl-github'></i></i></i></a>          
                     </div>
                 </div>
             </div>
